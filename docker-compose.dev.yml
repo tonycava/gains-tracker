@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  app:
+    container_name: grains-tracker-app
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    environment:
+      PORT: ${PORT}
+    ports:
+      - '11001:3000'
+    volumes:
+      - ./src:/app/src
+      - ./.svelte-kit:/app/.svelte-kit
+      - ./static:/app/static
+      - ./tailwind.config.cjs:/app/tailwind.config.cjs
+      - ./.env:/app/.env
