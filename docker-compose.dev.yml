@@ -9,6 +9,7 @@ services:
     restart: always
     environment:
       PORT: ${PORT}
+      DATABASE_URL: ${DATABASE_URL}
     ports:
       - '11001:3000'
     volumes:
