@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "darwin", "debian-openssl-1.1.x", "linux-musl"]
 }
 
 datasource db {
@@ -11,10 +12,50 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  password  String
+  id       String @id @default(cuid())
+  email    String @unique
+  name     String
+  password String
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  workouts Workout[]
+}
+
+model Workout {
+  id   String   @id @default(cuid())
+  name String
+  date DateTime
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  exercices Exercice[]
+}
+
+model ListExercice {
+  id   String @id @default(cuid())
+  name String
+}
+
+model Info {
+  id String @id @default(cuid())
+
+  numberOfRepetion Int
+  breakTime        Int
+  weight           Int
+
+  Exercice   Exercice @relation(fields: [exerciceId], references: [id])
+  exerciceId String
+}
+
+model Exercice {
+  id   String @id @default(cuid())
+  name String
+
+  info Info[]
+
+  workout   Workout @relation(fields: [workoutId], references: [id])
+  workoutId String
 }

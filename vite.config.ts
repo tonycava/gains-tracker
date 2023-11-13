@@ -2,8 +2,6 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import path from 'path';
 
-console.log(process.env.PORT)
-
 export default defineConfig({
     plugins: [sveltekit()],
     server: {
@@ -17,6 +15,9 @@ export default defineConfig({
     resolve: {
         alias: {
             '@styles': path.resolve('./src/styles'),
+            '@services': path.resolve('./src/services'),
+            '@components': path.resolve('./src/components'),
+            '@stores': path.resolve('./src/stores'),
         }
     }
 });

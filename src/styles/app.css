@@ -1,3 +1,16 @@
+@import 'fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html, body {
+        min-height: 100vh;
+    }
+}
+
+* {
+    font-family: Poppins-regular, ubuntu, sans-serif;
+    box-sizing: border-box;
+}

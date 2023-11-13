@@ -10,11 +10,15 @@ services:
     environment:
       PORT: ${PORT}
       DATABASE_URL: ${DATABASE_URL}
+      JWT_SECRET: ${JWT_SECRET}
+      PUBLIC_API_URL: ${API_URL}
+      PUBLIC_EXTERNAL_API_URL: ${EXTERNAL_API_URL}
     ports:
       - '11001:3000'
     volumes:
       - ./src:/app/src
       - ./.svelte-kit:/app/.svelte-kit
+      - ./prisma:/app/prisma
       - ./static:/app/static
-      - ./tailwind.config.cjs:/app/tailwind.config.cjs
+      - ./tailwind.config.js:/app/tailwind.config.cjs
       - ./.env:/app/.env
